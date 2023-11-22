@@ -65,7 +65,7 @@ void main_page()
     }
     else if (option == 2)
     {
-        /* customer */
+        customer();
     }
     else if (option == 3)
     {
@@ -77,7 +77,7 @@ void manager_portal()
 {
     system("cls");
     cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO MANAGER PORTAL*****\n\n";
-    cout << "\t<1> Menu Management\n\n\t<2> Staff\n\n\t<3> Order History\n\n\t<4> Change Password\n\n\t<0> Back To Main Page";
+    cout << "\n\t<1> Menu Management\n\n\t<2> Staff\n\n\t<3> Order History\n\n\t<4> Change Password\n\n\t<0> Back To Main Page";
     choose();
     cin >> option;
     if (option == 1)
@@ -125,9 +125,9 @@ void wrong_entry()
 // --------------------------------title-----------------------------------------------------------------
 void title(string t)
 {
-    cout<< "------------------------------------------"<<endl;
-    cout<< "                "<<t<<"                     "<<endl;
-    cout<< "------------------------------------------";
+    cout<< "\t\t\t***********************************************"<<endl;
+    cout<< "\t\t\t                "<<t<<"                        "<<endl;
+    cout<< "\t\t\t***********************************************"<<endl;
 }
 // -----------------------------------MENU MANAGEMENT------------------------------------------------------------------------------------------------------------
 fstream viewf("fastfood.txt", ios :: in | ios::out);
@@ -137,19 +137,19 @@ void menu_management()
 {
     system("cls");
     cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO MENU MANAGEMENT*****\n\n";
-    cout << "\t<1> View Menu\n\n\t<2> Edit/Update Menu\n\n\t<0> Back";
+    cout << "\n\t<1> View Menu\n\n\t<2> Edit/Update Menu\n\n\t<0> Back";
     choose();
     cin >> option;
 
     if (option == 1)
     {
-        system("cls");
+        // system("cls");
         view_menu();
     }
     else if (option == 2)
     {
         ofstream edit("menu.txt", ios ::out);
-        cout << "<1> Add Item\n\n<2> Remove Item";
+        cout << "\n\t<1> Add Item\n\n\t<2> Remove Item";
         choose();
         cin >> option;
         edit.close();
@@ -181,9 +181,9 @@ void menu_management()
 // }
 void view_menu()
 {
-    int option;
+    system("cls");
     cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO E-DINE CAFE*****\n\n";
-    cout << "1)FASTFOOD \n\n2) DRINKS\n\n3) DESSERTS\n\n0) Back ";
+    cout << "\n\t<1> FASTFOOD \n\n\t<2> DRINKS\n\n\t<3> DESSERTS\n\n\t<0> Back ";
     choose();
     cin >> option;
     if (option==1)
@@ -248,7 +248,7 @@ void order_history()
 {
     fstream order_history_file("order history.txt", ios ::in | ios ::out);
     cout << "\t\t\t\t\t\t\t\t\t*****ORDER HISTORY*****\n\n";
-    cout << "\t<1> View\n\n\t<2> Delete\n\n\t<0> Back";
+    cout << "\t\t<1> View\n\n\t<2> Delete\n\n\t<0> Back";
     if (option == 1)
     {
         while (!order_history_file.eof())
@@ -263,7 +263,7 @@ void order_history()
     else if (option == 2)
     {
         order_history_file.trunc;
-        order_history_file << "\\t\t\tORDER HISTORY\n";
+        order_history_file << "\t\t\tORDER HISTORY\n";
     }
     else if (option == 0)
     {
@@ -282,7 +282,7 @@ void staff()
 {
     system("cls");
     cout << "\t\t\t\t\t\t\t\t\t*****STAFF MANAGEMENT*****\n\n";
-    cout << "\t<1> View Member List\n\n\t<2> Add Member \n\n\t<3> Remove Member\n\n\t<4> Update Member Data\n\n\t<5> Find Member\n\n\t<0> Back";
+    cout << "\n\t<1> View Member List\n\n\t<2> Add Member \n\n\t<3> Remove Member\n\n\t<4> Update Member Data\n\n\t<5> Find Member\n\n\t<0> Back";
     choose();
     cin >> option;
     if (option == 1)
@@ -438,23 +438,16 @@ void savefm()
 void customer()
 {
     system("cls");
-    cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO E-DINE CAFE*****\n\n";
-    cout << "\t<1> View Menu\n\n\t<2> Place Order\n\n\t<0> Back\n";
+    // cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO E-DINE CAFE*****\n\n";
+    title("WELCOME TO E-DINE");
+    cout << "\n\t<1> View Menu\n\n\t<2> Place Order\n\n\t<0> Back\n";
     choose();
     cin >> option;
     switch (option)
     {
     case 1:
     {
-        system("cls");
-        char view_menu;
-        ifstream view("menu.txt", ios ::in);
-        while (!view.eof())
-        {
-            view.get(view_menu);
-            cout << view_menu;
-        }
-        view.close();
+        view_menu();
         break;
     }
     case 2:
