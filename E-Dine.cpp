@@ -12,10 +12,23 @@ char ch;
 void choose();
 void wrong_entry();
 void title();
-
+// ---------------------
 void main_page();
+// ---------------------
+void manager_portal(); //MAIN PAGE (1)
 
+void menu_management();
 
+void staff();
+
+void order_history();
+
+/*CHANGE PASSWORD*/
+
+// ---------------------
+void customer(); //MAIN PAGE (2)
+// ---------------------
+/*KITCHEN*/ //MAIN PAGE (3)
 
 int main() 
 {
