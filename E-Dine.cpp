@@ -92,17 +92,27 @@ void main_page() //MAIN PAGE OF THE APPLICATION
     cout << "\t<1> MANAGER\n\n\t<2> CUSTOMER\n\n\t<3> KITCHEN\n\n\tEnter any key to exit...";
     choose();
     cin >> option;
-    if (option == 1)
+    switch (option)
     {
-        manager_portal();
-    }
-    else if (option == 2)
-    {
-        customer();
-    }
-    else if (option == 3)
-    {
-        /* chef */
+        case 1:
+        {
+            manager_portal();
+            break;
+        }  
+        case 2:
+        {
+            customer();
+            break;
+        }   
+        case 3:
+        {
+            /* chef */
+            break;
+        }  
+        default:
+        {
+            break;
+        }
     }
 }
 
@@ -118,28 +128,29 @@ void menu_management()
     cout << "\n\t<1> View Menu\n\n\t<2> Edit/Update Menu\n\n\t<0> Back";
     choose();
     cin >> option;
-
-    if (option == 1) //VIEW
+    switch (option)
     {
-        // system("cls");
-        view_menu();
-    }
-    else if (option == 2) //EDIT
-    {
-        ofstream edit("menu.txt", ios ::out);
-        cout << "\n\t<1> Add Item\n\n\t<2> Remove Item\n\n\t<3> Update Item";
-        choose();
-        cin >> option;
-        edit.close();
-    }
-    else if (option == 0)
-    {
-        manager_portal();
-    }
-    else
-    {
-        wrong_entry();
-        menu_management();
+        case 1:
+        {
+            view_menu();
+            break;
+        }  
+        case 2:
+        {
+            cout << "\n\t<1> Add Item\n\n\t<2> Remove Item\n\n\t<3> Update Item";
+            break;
+        }   
+        case 0:
+        {
+            manager_portal();
+            break;
+        }  
+        default:
+        {
+            wrong_entry();
+            menu_management();
+            break;
+        }
     }
 }
 
@@ -150,36 +161,45 @@ void view_menu() //view menu function
     cout << "\n\t<1> FASTFOOD \n\n\t<2> DRINKS\n\n\t<3> DESSERTS\n\n\t<0> Back ";
     choose();
     cin >> option;
-    if (option==1)
+    switch (option)
     {
-        fastfood();
-    }
-    else if(option==2)
-    {
-        drinks();
-    }
-    else if(option == 3)
-    {
-        desserts();
-    }
-    else if (option == 0)
-    {
-        menu_management();
-    }
-    else
-    {
-        wrong_entry();
-        view_menu();
+        case 1:
+        {
+            fastfood();
+            break;
+        }  
+        case 2:
+        {
+            drinks();
+            break;
+        }  
+        case 3:
+        {
+            desserts();
+            break;
+        }  
+        case 0:
+        {
+            menu_management();
+            break;
+        }  
+        default:
+        {
+            wrong_entry();
+            view_menu();
+            break;
+        }
     }
 }
 
 void fastfood() // view fast food function
 {
     system("cls");
+    title("FAST FOOD");
     while (!viewf.eof())
     {
         viewf.get(ch);
-        cout << ch;
+        cout << "\t\t" << ch;
     }
     viewf.close();
 }
@@ -187,10 +207,11 @@ void fastfood() // view fast food function
 void drinks() //view drinks function
 {
     system("cls");
+    title("DRINKS");
     while (!viewd.eof())
     {
         viewd.get(ch);
-        cout << ch;
+        cout << "\t\t" << ch;
     }
     viewd.close();
 }
@@ -198,10 +219,11 @@ void drinks() //view drinks function
 void desserts() //view dessert function 
 {
     system("cls");
+    title("DESSERT");
     while (!viewdt.eof())
     {
         viewdt.get(ch);
-        cout << ch;
+        cout << "\t\t" << ch;
     }
     viewdt.close();
 } 
