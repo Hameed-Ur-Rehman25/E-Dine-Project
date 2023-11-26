@@ -436,6 +436,7 @@ void remove_item()
                 cout <<"\n\t\tEnter Item Serial Number: ";
                 cin >> item.fsr_no;
                 fstream f1("fastfood.txt", ios::in | ios :: out);
+                f1.seekg(0, ios::beg);
                 while (getline(f1, item.line))
                     {
                         stringstream sf1(item.line);
@@ -460,6 +461,7 @@ void remove_item()
                 cout <<"\n\t\tEnter Item Serial Number: ";
                 cin >> item.fsr_no;
                 fstream d1("drinks.txt", ios::in | ios :: out);
+                d1.seekg(0, ios::beg);
                 while (getline(d1, item.line))
                     {
                         stringstream sd1(item.line);
@@ -481,9 +483,10 @@ void remove_item()
         case 3:
             {
                 vector <string> dt;
+                fstream dt1("dessert.txt", ios::in | ios :: out);
+                dt1.seekg(0, ios::beg);
                 cout <<"\n\t\tEnter Item Serial Number: ";
                 cin >> item.fsr_no;
-                fstream dt1("dessert.txt", ios::in | ios :: out);
                 while (getline(dt1, item.line))
                     {
                         stringstream sdt1(item.line);
@@ -513,7 +516,6 @@ void remove_item()
                 break;
             }
     }
-
 }
 
 void update_item()
