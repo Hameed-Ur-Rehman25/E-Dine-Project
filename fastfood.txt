@@ -1,4 +1,3 @@
-33 sdgsd 400
-2 sdfas 545
-3 gsfg 535
-66 sfg 500
+1 pizza 1000
+2 burger 300
+3 cake 400

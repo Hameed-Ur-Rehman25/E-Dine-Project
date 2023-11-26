@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <fstream>
 #include <iomanip>
+#include <vector>
 
 using namespace std;
 
@@ -52,6 +53,7 @@ struct
     int quantity = 0;
     int sum = 0;
     int num = 0;
+    int fsr_no = 0;
     string line;
 } item;
 
@@ -421,6 +423,96 @@ void add_item()
 
 void remove_item()
 {
+    system("cls");
+    title("ITEAM REMOVER");
+    cout << "\n\t<1> FASTFOOD \n\n\t<2> DRINKS\n\n\t<3> DESSERTS\n\n\t<0> Back ";
+    choose();
+    cin >> option;
+    switch (option)
+    {
+        case 1:
+            {
+                vector <string> f;
+                cout <<"\n\t\tEnter Item Serial Number: ";
+                cin >> item.fsr_no;
+                fstream f1("fastfood.txt", ios::in | ios :: out);
+                while (getline(f1, item.line))
+                    {
+                        stringstream sf1(item.line);
+                        sf1 >> item.sr_no;
+                        if (item.fsr_no != item.sr_no)
+                            {
+                                f.push_back(item.line);
+                            }
+                    }
+                f1.close();
+                fstream ff1("fastfood.txt", ios :: out);
+                for (int i = 0; i < f.size(); i++)
+                    {
+                        ff1 << f[i]<<endl;
+                    }
+                ff1.close();
+                break;
+            }    
+        case 2:
+            {
+                vector <string> d;
+                cout <<"\n\t\tEnter Item Serial Number: ";
+                cin >> item.fsr_no;
+                fstream d1("drinks.txt", ios::in | ios :: out);
+                while (getline(d1, item.line))
+                    {
+                        stringstream sd1(item.line);
+                        sd1 >> item.sr_no;
+                        if (item.fsr_no != item.sr_no)
+                            {
+                                d.push_back(item.line);
+                            }
+                    }
+                d1.close();
+                fstream dd1("drinks.txt", ios :: out);
+                for (int i = 0; i < d.size(); i++)
+                    {
+                        dd1 << d[i]<<endl;
+                    }
+                dd1.close();
+                break;
+            }    
+        case 3:
+            {
+                vector <string> dt;
+                cout <<"\n\t\tEnter Item Serial Number: ";
+                cin >> item.fsr_no;
+                fstream dt1("dessert.txt", ios::in | ios :: out);
+                while (getline(dt1, item.line))
+                    {
+                        stringstream sdt1(item.line);
+                        sdt1 >> item.sr_no;
+                            if (item.fsr_no != item.sr_no)
+                                {
+                                    dt.push_back(item.line);
+                                }
+                    }
+                dt1.close();
+                fstream ddt1("dessert.txt", ios :: out);
+                    for (int i = 0; i < dt.size(); i++)
+                        {
+                            ddt1 << dt[i]<<endl;
+                        }
+                ddt1.close();
+                break;
+            }    
+        case 0:
+            {
+                edit_item();
+                break;
+            }    
+        default:
+            {
+
+                break;
+            }
+    }
 
 }
 
@@ -435,11 +527,11 @@ inline void fastfood() // view fast food function
     system("cls");
     title("FAST FOOD");
     fstream f1("fastfood.txt", ios::in);
-    while (!f1.eof())
-    {
-        f1.get(ch);
-        cout << ch;
-    }
+        while (!f1.eof())
+            {
+                f1.get(ch);
+                cout << ch;
+            }
     f1.close();
 }
 
