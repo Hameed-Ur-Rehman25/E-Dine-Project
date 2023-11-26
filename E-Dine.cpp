@@ -125,6 +125,11 @@ void main_page() // MAIN PAGE OF THE APPLICATION
                 /* chef */
                 break;
             }
+        default:
+            {
+                exit;
+                break;
+            }
     }
 }
 
@@ -139,38 +144,38 @@ void manager_portal()
     cin >> option;
     switch (option)
     {
-    case 1:
-    {
-        // pswd
-        menu_management();
-        break;
-    }
-    case 2:
-    {
-        staff();
-        break;
-    }
-    case 3:
-    {
-        order_history();
-        break;
-    }
-    case 4:
-    {
-        // settings
-        break;
-    }
-    case 0:
-    {
-        main_page();
-        break;
-    }
-    default:
-    {
-        wrong_entry();
-        manager_portal();
-        break;
-    }
+        case 1:
+            {
+                // pswd
+                menu_management();
+                break;
+            }
+        case 2:
+            {
+                staff();
+                break;
+            }
+        case 3:
+            {
+                order_history();
+                break;
+            }
+        case 4:
+            {
+                // settings
+                break;
+            }
+        case 0:
+            {
+                main_page();
+                break;
+            }
+        default:
+            {
+                wrong_entry();
+                manager_portal();
+                break;
+            }
     }
 }
 
@@ -416,10 +421,12 @@ void add_item()
 
 void remove_item()
 {
+
 }
 
 void update_item()
 {
+
 }
 
 
@@ -508,7 +515,6 @@ void order_history()
 
 //-----------------------------------------------------------------------------------------------
 
-fstream staff_file("staff.txt", ios::in | ios ::out | ios::app);
 void staff()
 {
     system("cls");
@@ -517,49 +523,51 @@ void staff()
     cout << "\n\t<1> View Member List\n\n\t<2> Add Member \n\n\t<3> Remove Member\n\n\t<4> Update Member Data\n\n\t<5> Find Member\n\n\t<0> Back";
     choose();
     cin >> option;
-    if (option == 1)
-    {
-        while (!staff_file.eof())
-        {
-            staff_file.get(ch);
-            cout << ch;
-        }
-        cout << "\n\n\tPress any key to back...";
-        getch();
-        staff();
-    }
-    else if (option == 2)
-    {
-        staff_input();
-    }
-    else if (option == 3)
-    {
-        remove_m();
-    }
-    else if (option == 4)
-    {
-        // -----
-    }
-    else if (option == 5)
-    {
-        find_member();
-    }
-    else if (option == 0)
-    {
-        manager_portal();
-    }
-    else
-    {
-        wrong_entry();
-        staff();
-    }
+        if (option == 1)
+            {
+                fstream sf_v("staff.txt", ios::in);
+                    while (!sf_v.eof())
+                        {
+                            sf_v.get(ch);
+                            cout << ch;
+                        }
+                cout << "\n\n\tPress any key to back...";
+                getch();
+                staff();
+            }
+        else if (option == 2)
+            {
+                staff_input();
+            }
+        else if (option == 3)
+            {
+                remove_m();
+            }
+        else if (option == 4)
+            {
+                // -----
+            }
+        else if (option == 5)
+            {
+                find_member();
+            }
+        else if (option == 0)
+            {
+                manager_portal();
+            }
+        else
+            {
+                wrong_entry();
+                staff();
+            }
 }
 
 void staff_input() // ADD MEMBER
 {
+    fstream st_add("staff.txt", ios ::out | ios::app);
+    struct staff v;
     system("cls");
     title("ADD MEMBER");
-    struct staff v;
     cout << "ID: ";
     cin >> v.ID;
     cout << "First Name: ";
@@ -577,108 +585,104 @@ void staff_input() // ADD MEMBER
     cin >> v.DOJ;
     v.line = v.fname + " " + v.lname + " " + v.DOB + " " + v.Phone + " " + v.DOJ + " " + v.Address;
     do
-    {
-        cout << "\nDo you want to Save y/n: ";
-        cin >> ch;
-        if (ch == 'y' || ch == 'Y')
         {
-            // staff_file.app;
-            staff_file << "\n"
-                       << v.ID << " " << v.line;
-            cout << "Successfully Saved! Press any key to go back...";
-            getch();
-            staff_file.close();
-            break;
-        }
-        else if (ch == 'n' || ch == 'N')
-        {
-            cout << "Not Saved in file! Press any key to go back...";
-            getch();
-            break;
-        }
-        else
-            cout << "INCORRECT OPTION! PLEASE ENTER Y/N...";
-    } while (true);
+            cout << "\nDo you want to Save y/n: ";
+            cin >> ch;
+                if (ch == 'y' || ch == 'Y')
+                    {
+                        // staff_file.app;
+                        st_add << "\n"
+                                << v.ID << " " << v.line;
+                        cout << "Successfully Saved! Press any key to go back...";
+                        getch();
+                        st_add.close();
+                        break;
+                    }
+                else if (ch == 'n' || ch == 'N')
+                    {
+                        cout << "Not Saved in file! Press any key to go back...";
+                        getch();
+                        break;
+                    }
+                else
+                    cout << "INCORRECT OPTION! PLEASE ENTER Y/N...";
+        } while (true);
 }
 
 void remove_m()
 {
-    system("cls");
-    title("REMOVE MEMBER");
-    struct staff x;
-    cout << "\n\n\t\tEnter ID: ";
-    cin >> x.fid;
-    // staff_file.beg;
-    staff_file.seekg(0);
-    while (getline(staff_file, x.line))
-    {
-        stringstream xs(x.line);
-        xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address;
-        if (x.line.length() != 0)
-        {
+    // system("cls");
+    // title("REMOVE MEMBER");
+    // struct staff x;
+    // cout << "\n\n\t\tEnter ID: ";
+    // cin >> x.fid;
+    // // staff_file.beg;
+    // staff_file.seekg(0);
+    // while (getline(staff_file, x.line))
+    // {
+    //     stringstream xs(x.line);
+    //     xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address;
+    //     if (x.line.length() != 0)
+    //     {
 
-            if (x.fid != x.ID)
-            {
-                // cout <<"\tID: "<<x.ID<<endl;
-                // cout <<"\tName: "<<x.fname<<" "<<x.lname<<endl;
-                // cout << "\tDOB: "<<x.DOB<<endl;
-                // cout << "\tPhone: "<<x.Phone<<endl;
-                // cout << "\tDOJ: "<<x.DOJ<<endl;
-                // cout << "\tAddress: "<<x.Address<<endl;
-                // staff_file.trunc;
-                // ofstream staff_file2;
-                // staff_file2.open("staff.txt");
-                staff_file << '\n'
-                           << x.ID << " " << x.fname << " " << x.lname + " " << x.DOB + " " << x.Phone + " " << x.DOJ + " " << x.Address;
-                cout << '\n'
-                     << x.ID << " " << x.fname << " " << x.lname + " " << x.DOB + " " << x.Phone + " " << x.DOJ + " " << x.Address;
-            }
-        }
-        else
-        {
-            cout << " ";
-        }
-    }
-    staff_file.close();
+    //         if (x.fid != x.ID)
+    //         {
+    //             // cout <<"\tID: "<<x.ID<<endl;
+    //             // cout <<"\tName: "<<x.fname<<" "<<x.lname<<endl;
+    //             // cout << "\tDOB: "<<x.DOB<<endl;
+    //             // cout << "\tPhone: "<<x.Phone<<endl;
+    //             // cout << "\tDOJ: "<<x.DOJ<<endl;
+    //             // cout << "\tAddress: "<<x.Address<<endl;
+    //             // staff_file.trunc;
+    //             // ofstream staff_file2;
+    //             // staff_file2.open("staff.txt");
+    //             staff_file << '\n'
+    //                        << x.ID << " " << x.fname << " " << x.lname + " " << x.DOB + " " << x.Phone + " " << x.DOJ + " " << x.Address;
+    //             cout << '\n'
+    //                  << x.ID << " " << x.fname << " " << x.lname + " " << x.DOB + " " << x.Phone + " " << x.DOJ + " " << x.Address;
+    //         }
+    //     }
+    //     else
+    //     {
+    //         cout << " ";
+    //     }
+    // }
+    // staff_file.close();
 }
 
+fstream st_v("staff.txt", ios::in);
 void find_member() // FIND MEMBER
 {
-    system("cls");
-    // cout<< "\t\t\t------------------------------------------"<<endl;
-    // cout<< "\t\t\t               MEMBER FINDER              "<<endl;
-    // cout<< "\t\t\t------------------------------------------"<<endl;
-    title("MEMBER FNDER");
     struct staff x;
+    system("cls");
+    title("MEMBER FNDER");
     cout << "\n\n\t\tEnter ID: ";
     cin >> x.fid;
-    // staff_file.beg;
-    while (!staff_file.eof())
-    {
-        getline(staff_file, x.line);
-        stringstream xs(x.line);
-        xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address;
-
-        if (x.line.length() != 0)
-        {
-            if (x.fid == x.ID)
+        while (getline(st_v, x.line))
             {
-                cout << "\tID: " << x.ID << endl;
-                cout << "\tName: " << x.fname << " " << x.lname << endl;
-                cout << "\tDOB: " << x.DOB << endl;
-                cout << "\tPhone: " << x.Phone << endl;
-                cout << "\tDOJ: " << x.DOJ << endl;
-                cout << "\tAddress: " << x.Address << endl;
+                stringstream xs(x.line);
+                xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address;
+
+                if (x.line.length() != 0)
+                    {
+                        if (x.fid == x.ID)
+                            {
+                                cout << "\tID: " << x.ID << endl;
+                                cout << "\tName: " << x.fname << " " << x.lname << endl;
+                                cout << "\tDOB: " << x.DOB << endl;
+                                cout << "\tPhone: " << x.Phone << endl;
+                                cout << "\tDOJ: " << x.DOJ << endl;
+                                cout << "\tAddress: " << x.Address << endl;
+                                savefm();
+                            }
+                    }
+            }
+        if (x.fid != x.ID)
+            {
+                cout << "\n\t\tInvalid ID! Please enter correct ID number." << endl;
                 savefm();
             }
-        }
-    }
-    if (x.fid != x.ID)
-    {
-        cout << "\n\t\tInvalid ID! Please enter correct ID number." << endl;
-        savefm();
-    }
-    staff_file.close();
+    st_v.close();
 }
 
 void savefm()
@@ -688,17 +692,17 @@ void savefm()
         cout << "\n\t\tDo you want to Find again y/n: ";
         cin >> ch;
         if (ch == 'y' || ch == 'Y')
-        {
-            staff_file.seekg(0, ios ::beg);
-            find_member();
-        }
+            {
+                st_v.seekg(0, ios ::beg);
+                find_member();
+            }
         else if (ch == 'n' || ch == 'N')
-        {
-            cout << "\n\t\tPress any key to go back...";
-            getch();
-            staff();
-            break;
-        }
+            {
+                cout << "\n\t\tPress any key to go back...";
+                getch();
+                staff();
+                break;
+            }
         else
             cout << "\n\t\tINCORRECT OPTION! PLEASE ENTER Y/N...";
     } while (true);
