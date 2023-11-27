@@ -484,25 +484,44 @@ void remove_item()
             {
                 vector <string> dt;
                 fstream dt1("dessert.txt", ios::in | ios :: out);
-                dt1.seekg(0, ios::beg);
-                cout <<"\n\t\tEnter Item Serial Number: ";
-                cin >> item.fsr_no;
-                while (getline(dt1, item.line))
-                    {
-                        stringstream sdt1(item.line);
-                        sdt1 >> item.sr_no;
-                            if (item.fsr_no != item.sr_no)
-                                {
-                                    dt.push_back(item.line);
-                                }
-                    }
-                dt1.close();
-                fstream ddt1("dessert.txt", ios :: out);
-                    for (int i = 0; i < dt.size(); i++)
+                do
+                {
+                    dt1.seekg(0, ios::beg);
+                    cout <<"\n\t\tEnter Item Serial Number: ";
+                    cin >> item.fsr_no;
+                    while (getline(dt1, item.line))
                         {
-                            ddt1 << dt[i]<<endl;
+                            stringstream sdt1(item.line);
+                            sdt1 >> item.sr_no;
+                                if (item.fsr_no != item.sr_no)
+                                    {
+                                        dt.push_back(item.line);
+                                    }
                         }
-                ddt1.close();
+                    dt1.close();
+                    fstream ddt1("dessert.txt", ios :: out);
+                        for (int i = 0; i < dt.size(); i++)
+                            {
+                                ddt1 << dt[i]<<endl;
+                            }
+                    ddt1.close();
+                    do
+                    {
+                        cout <<"\n\n\tDO WANT TO REMOVE ANOTHER ITEM y/n: ";
+                        cin >> ch;
+                        if (ch == 'N' || ch == 'n')
+                        {
+                            cout << "Press any key to go back...";
+                            getch();
+                            edit_item();
+                            break;
+                        }
+                        else if (ch != 'y' || ch != 'Y')
+                        {
+                            wrong_entry();
+                        }
+                    }while(ch != 'y' || ch != 'Y');    
+                }while(true);    
                 break;
             }    
         case 0:
@@ -522,7 +541,6 @@ void update_item()
 {
 
 }
-
 
 inline void fastfood() // view fast food function
 {
