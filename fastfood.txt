@@ -1,3 +1,2 @@
 1 pizza 1000
-2 burger 300
 3 cake 400

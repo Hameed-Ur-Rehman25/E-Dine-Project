@@ -9,6 +9,7 @@ using namespace std;
 
 short int option;
 char ch;
+bool run = false;
 
 void choose();
 void wrong_entry();
@@ -255,6 +256,7 @@ void edit_item()
     system("cls");
     title("MENU MANAGEMENT");
     cout << "\n\t<1> Add Item\n\n\t<2> Remove Item\n\n\t<3> Update Item\n\n\t<0> Back";
+    choose();
     cin >> option;
     switch (option)
     {
@@ -504,24 +506,29 @@ void remove_item()
                             {
                                 ddt1 << dt[i]<<endl;
                             }
+                    cout <<"\n\tItem Removed Succesfully";
                     ddt1.close();
                     do
                     {
                         cout <<"\n\n\tDO WANT TO REMOVE ANOTHER ITEM y/n: ";
                         cin >> ch;
                         if (ch == 'N' || ch == 'n')
-                        {
-                            cout << "Press any key to go back...";
-                            getch();
-                            edit_item();
-                            break;
-                        }
-                        else if (ch != 'y' || ch != 'Y')
-                        {
-                            wrong_entry();
-                        }
+                            {
+                                cout << "\n\tPress any key to go back...";
+                                getch();
+                                edit_item();
+                                break;
+                            }
+                        else if (ch == 'y' || ch == 'Y')
+                            {
+                                run = true;
+                            }
+                        else 
+                            {
+                                wrong_entry();
+                            }
                     }while(ch != 'y' || ch != 'Y');    
-                }while(true);    
+                }while(ch == 'y' || ch == 'Y');    
                 break;
             }    
         case 0:
