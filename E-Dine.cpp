@@ -486,49 +486,26 @@ void remove_item()
             {
                 vector <string> dt;
                 fstream dt1("dessert.txt", ios::in | ios :: out);
-                do
-                {
-                    dt1.seekg(0, ios::beg);
-                    cout <<"\n\t\tEnter Item Serial Number: ";
-                    cin >> item.fsr_no;
-                    while (getline(dt1, item.line))
-                        {
-                            stringstream sdt1(item.line);
-                            sdt1 >> item.sr_no;
-                                if (item.fsr_no != item.sr_no)
-                                    {
-                                        dt.push_back(item.line);
-                                    }
-                        }
-                    dt1.close();
-                    fstream ddt1("dessert.txt", ios :: out);
-                        for (int i = 0; i < dt.size(); i++)
-                            {
-                                ddt1 << dt[i]<<endl;
-                            }
-                    cout <<"\n\tItem Removed Succesfully";
-                    ddt1.close();
-                    do
+                dt1.seekg(0, ios::beg);
+                cout <<"\n\t\tEnter Item Serial Number: ";
+                cin >> item.fsr_no;
+                while (getline(dt1, item.line))
                     {
-                        cout <<"\n\n\tDO WANT TO REMOVE ANOTHER ITEM y/n: ";
-                        cin >> ch;
-                        if (ch == 'N' || ch == 'n')
-                            {
-                                cout << "\n\tPress any key to go back...";
-                                getch();
-                                edit_item();
-                                break;
-                            }
-                        else if (ch == 'y' || ch == 'Y')
-                            {
-                                run = true;
-                            }
-                        else 
-                            {
-                                wrong_entry();
-                            }
-                    }while(ch != 'y' || ch != 'Y');    
-                }while(ch == 'y' || ch == 'Y');    
+                        stringstream sdt1(item.line);
+                        sdt1 >> item.sr_no;
+                            if (item.fsr_no != item.sr_no)
+                                {
+                                    dt.push_back(item.line);
+                                }
+                    }
+                dt1.close();
+                fstream ddt1("dessert.txt", ios :: out);
+                    for (int i = 0; i < dt.size(); i++)
+                        {
+                            ddt1 << dt[i]<<endl;
+                        }
+                cout <<"\n\tItem Removed Succesfully";
+                ddt1.close();  
                 break;
             }    
         case 0:
@@ -730,43 +707,43 @@ void staff_input() // ADD MEMBER
 
 void remove_m()
 {
-    // system("cls");
-    // title("REMOVE MEMBER");
-    // struct staff x;
-    // cout << "\n\n\t\tEnter ID: ";
-    // cin >> x.fid;
-    // // staff_file.beg;
-    // staff_file.seekg(0);
-    // while (getline(staff_file, x.line))
-    // {
-    //     stringstream xs(x.line);
-    //     xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address;
-    //     if (x.line.length() != 0)
-    //     {
-
-    //         if (x.fid != x.ID)
-    //         {
-    //             // cout <<"\tID: "<<x.ID<<endl;
-    //             // cout <<"\tName: "<<x.fname<<" "<<x.lname<<endl;
-    //             // cout << "\tDOB: "<<x.DOB<<endl;
-    //             // cout << "\tPhone: "<<x.Phone<<endl;
-    //             // cout << "\tDOJ: "<<x.DOJ<<endl;
-    //             // cout << "\tAddress: "<<x.Address<<endl;
-    //             // staff_file.trunc;
-    //             // ofstream staff_file2;
-    //             // staff_file2.open("staff.txt");
-    //             staff_file << '\n'
-    //                        << x.ID << " " << x.fname << " " << x.lname + " " << x.DOB + " " << x.Phone + " " << x.DOJ + " " << x.Address;
-    //             cout << '\n'
-    //                  << x.ID << " " << x.fname << " " << x.lname + " " << x.DOB + " " << x.Phone + " " << x.DOJ + " " << x.Address;
-    //         }
-    //     }
-    //     else
-    //     {
-    //         cout << " ";
-    //     }
-    // }
-    // staff_file.close();
+    struct staff x;
+    system("cls");
+    title("REMOVE MEMBER");
+    cout << "\n\n\t\tEnter ID: ";
+    cin >> x.fid;
+    // staff_file.beg;
+    fstream st_r("staff.txt",ios::in | ios:: out);
+    st_r.seekg(0, ios::beg);
+    while (getline(st_r, x.line))
+    {
+        stringstream xs(x.line);
+        xs >> x.ID >> x.fname >> x.lname >> x.DOB >> x.Phone >> x.DOJ >> x.Address;
+        if (x.line.length() != 0)
+            {
+                if (x.fid != x.ID)
+                {
+                    // cout <<"\tID: "<<x.ID<<endl;
+                    // cout <<"\tName: "<<x.fname<<" "<<x.lname<<endl;
+                    // cout << "\tDOB: "<<x.DOB<<endl;
+                    // cout << "\tPhone: "<<x.Phone<<endl;
+                    // cout << "\tDOJ: "<<x.DOJ<<endl;
+                    // cout << "\tAddress: "<<x.Address<<endl;
+                    // staff_file.trunc;
+                    // ofstream staff_file2;
+                    // staff_file2.open("staff.txt");
+                    st_r << '\n'
+                            << x.ID << " " << x.fname << " " << x.lname + " " << x.DOB + " " << x.Phone + " " << x.DOJ + " " << x.Address;
+                    cout << '\n'
+                        << x.ID << " " << x.fname << " " << x.lname + " " << x.DOB + " " << x.Phone + " " << x.DOJ + " " << x.Address;
+                }
+            }
+        else
+            {
+                cout << " ";
+            }
+    }
+    st_r.close();
 }
 
 fstream st_v("staff.txt", ios::in);
