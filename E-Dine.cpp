@@ -817,30 +817,30 @@ void customer()
     switch (option)
     {
     case 1:
-    {
-        fastfood();
-        cout << "\n\n\t\tEnter Item Number: ";
-        cin >> item.num;
-        // viewf.seekg(0, ios::beg);
-        ifstream viewf2("fastfood.txt", ios ::in);
-        while (!viewf2.eof())
         {
-            getline(viewf2, item.line);
-            stringstream xs(item.line);
-            xs >> item.sr_no >> item.item_name >> item.price;
-            if (item.num == item.sr_no)
+            fastfood();
+            cout << "\n\n\t\tEnter Item Number: ";
+            cin >> item.num;
+            // viewf.seekg(0, ios::beg);
+            ifstream viewf2("fastfood.txt", ios ::in);
+            while (!viewf2.eof())
             {
-                cout << "\n\t\tQuantity: ";
-                cin >> item.quantity;
-                item.sum = item.sum + (item.price * item.quantity);
-                cout << item.sum;
-                viewf2.close();
-                break;
+                getline(viewf2, item.line);
+                stringstream xs(item.line);
+                xs >> item.sr_no >> item.item_name >> item.price;
+                if (item.num == item.sr_no)
+                {
+                    cout << "\n\t\tQuantity: ";
+                    cin >> item.quantity;
+                    item.sum = item.sum + (item.price * item.quantity);
+                    // cout << item.sum;
+                    viewf2.close();
+                    break;
+                }
             }
+            order_p();
+            break;
         }
-        order_p();
-        break;
-    }
         // case 2:
         // {
         //     drinks();
@@ -929,6 +929,7 @@ void order_p()
     case 2:
     {
         cout << "\n\n\tBill: " << item.sum;
+
         break;
     }
     default:
