@@ -537,7 +537,7 @@ inline void drinks() // view drinks function
 {
     system("cls");
     title("DRINKS");
-    fstream d1("fastfood.txt", ios::in);
+    fstream d1("drinks.txt", ios::in);
     while (!d1.eof())
     {
         d1.get(ch);
@@ -550,7 +550,7 @@ inline void desserts() // view dessert function
 {
     system("cls");
     title("DESSERT");
-    fstream dt1("fastfood.txt", ios::in);
+    fstream dt1("dessert.txt", ios::in);
     while (!dt1.eof())
     {
         dt1.get(ch);
@@ -841,8 +841,8 @@ void customer()
         fastfood();
         cout << "\n\n\t\tEnter Item Number: ";
         cin >> item.num;
-        // viewf.seekg(0, ios::beg);
         ifstream viewf2("fastfood.txt", ios ::in);
+        viewf2.seekg(0, ios::beg);
         while (!viewf2.eof())
         {
             getline(viewf2, item.line);
@@ -869,9 +869,10 @@ void customer()
         cin >> item.num;
 
         ifstream viewd2("drinks.txt", ios::in);
-        while (!viewd2.eof())
+        viewd2.seekg(0, ios::beg);
+        while (getline(viewd2, l2))
         {
-            getline(viewd2, l2);
+            // getline(viewd2, l2);
             stringstream xs(l2);
             xs >> item.sr_no >> item.item_name >> item.price;
             if (item.num == item.sr_no)
@@ -894,9 +895,10 @@ void customer()
         cin >> item.num;
 
         ifstream viewdt1("dessert.txt", ios::in);
-        while (!viewdt1.eof())
+        viewdt1.seekg(0, ios::beg);
+        while (getline(viewdt1, item.line))
         {
-            getline(viewdt1, item.line);
+            // getline(viewdt1, item.line);
             stringstream xs(item.line);
             xs >> item.sr_no >> item.item_name >> item.price;
             if (item.num == item.sr_no)
@@ -924,53 +926,53 @@ void customer()
         //     break;
         // }
     }
-    }
+}
 
-    void order_p()
+void order_p()
+{
+    cout << "\n\n\t<1> Order again\n\t<2> Proceed To Bill ";
+    cout << "\n\n\t\tChoose any one option: ";
+    cin >> option;
+    switch (option)
     {
-        cout << "\n\n\t<1> Order again\n\t<2> Proceed To Bill ";
-        cout << "\n\n\t\tChoose any one option: ";
+    case 1:
+    {
+        customer();
+        break;
+    }
+    case 2:
+    {
+        string name, number;
+        int pin;
+        cout << "\n\n\tYour total bill: " << item.sum;
+        cout << "Enter the following credentials:";
+        cout << "\n\tName : ";
+        cin >> name;
+        cout << "\n\tPhone number : ";
+        cin >> number;
+        cout << "\n\t<1> Pay with card\n\t<2> Pay with cash";
         cin >> option;
         switch (option)
         {
         case 1:
-        {
-            customer();
+            cout << "\n\tEnter the pin code : ";
+            cin >> pin;
             break;
-        }
         case 2:
-        {
-            string name, number;
-            int pin;
-            cout << "\n\n\tYour total bill: " << item.sum;
-            cout << "Enter the following credentials:";
-            cout << "\n\tName : ";
-            cin >> name;
-            cout << "\n\tPhone number : ";
-            cin >> number;
-            cout << "\n\t<1> Pay with card\n\t<2> Pay with cash";
-            cin >> option;
-            switch (option)
-            {
-            case 1:
-                cout << "\n\tEnter the pin code : ";
-                cin >> pin;
-                break;
-            case 2:
-                cout << "\n\tPay the cash on the counter!";
-                break;
-            default:
-                cout << "\n\t\tINVALID OPTION";
-            }
-            cout << "\n\t\t***THANK YOU***\nWait for your order!You will be srved earlier";
-
+            cout << "\n\tPay the cash on the counter!";
             break;
-        }
         default:
-        {
-            wrong_entry();
-            customer();
-            break;
+            cout << "\n\t\tINVALID OPTION";
         }
-        }
+        cout << "\n\t\t***THANK YOU***\nWait for your order!You will be srved earlier";
+
+        break;
     }
+    default:
+    {
+        wrong_entry();
+        customer();
+        break;
+    }
+    }
+}
