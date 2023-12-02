@@ -26,6 +26,8 @@ void staff();
 void add_member();
 void remove_member();
 void find_member();
+void order_p();
+
 struct
 {
     string item_name;
@@ -584,7 +586,8 @@ void remove_member()
 void find_member()
 {
     int option;
-    do{
+    do
+    {
         system("cls");
         title("FIND MEMBER");
         cout << "\n\nn\t\tEnter ID: ";
@@ -607,18 +610,19 @@ void find_member()
         }
         if (staf.fid != staf.ID)
         {
-            cerr <<"\n\tInvalid ID! Please correct correct ID number";
+            cerr << "\n\tInvalid ID! Please correct correct ID number";
         }
-        
+
         cout << "\n\n\tPress 1 to add member(or any key to go back): ";
         cin >> option;
-    }while(option == 1);
+    } while (option == 1);
 }
 
 void customer()
 {
     int option;
-    do{
+    do
+    {
         system("cls");
         title("WELCOME TO E-DINE");
         cout << "\n\t<1> FASTFOOD \n\n\t<2> DRINKS\n\n\t<3> DESSERTS\n\n\t<0> Back\n\n\tPress any key to exit ";
@@ -670,7 +674,6 @@ void customer()
                     break;
                 }
             }
-            
         }
         else if (option == 3)
         {
@@ -695,45 +698,46 @@ void customer()
                 }
             }
         }
-    }while(option != 0);    
-    
+    } while (option != 0);
 }
 
 void order_p()
 {
     int option;
-    cout << "\n\n\t<1> Order again\n\t<2> Proceed To Bill ";
-    cout << "\n\n\t\tChoose any one option: ";
-    cin >> option;
-    if (option == 1)
-    {
-        customer();
-    }
-    else if (option == 2)
-    {
-        string name, number;
-        int pin;
-        cout << "\n\n\tYour total bill: " << item.sum;
-        cout << "Enter the following credentials:";
-        cout << "\n\tName : ";
-        cin >> name;
-        cout << "\n\tPhone number : ";
-        cin >> number;
-        cout << "\n\t<1> Pay with card\n\t<2> Pay with cash";
+    do{
+        cout << "\n\n\t<1> Order again\n\t<2> Proceed To Bill \n\n\tPress any key to exit";
+        cout << "\n\n\t\tChoose any one option: ";
         cin >> option;
-        switch (option)
+        // if (option == 1)
+        // {
+        //     customer();
+        // }
+        if (option == 2)
         {
-        case 1:
-            cout << "\n\tEnter the pin code : ";
-            cin >> pin;
-            break;
-        case 2:
-            cout << "\n\tPay the cash on the counter!";
-            break;
-        default:
-            cout << "\n\t\tINVALID OPTION";
+            string name, number;
+            int pin;
+            cout << "\n\n\tYour total bill: " << item.sum;
+            cout << "Enter the following credentials:";
+            cout << "\n\tName : ";
+            cin >> name;
+            cout << "\n\tPhone number : ";
+            cin >> number;
+            cout << "\n\t<1> Pay with card\n\t<2> Pay with cash";
+            cout <<"\n\n\tChoose any one option: ";
+            cin >> option;
+            switch (option)
+            {
+            case 1:
+                cout << "\n\tEnter the pin code : ";
+                cin >> pin;
+                break;
+            case 2:
+                cout << "\n\tPay the cash on the counter!";
+                break;
+            default:
+                cout << "\n\t\tINVALID OPTION";
+            }
+            cout << "\n\t\t***THANK YOU***\nWait for your order!You will be srved earlier";
         }
-        cout << "\n\t\t***THANK YOU***\nWait for your order!You will be srved earlier";
-    }
+    }while(option != 1);
 }
-
