@@ -410,14 +410,16 @@ void order_history()
     do{
         system("cls");
         title("ORDER HISTORY");
-        cout << "\t\t<1> View\n\n\t<2> Delete\n\n\t<0> Back";
+        cout << "\n\t<1> View\n\n\t<2> Delete\n\n\t<0> Back\n\n\tPress any key to exit...";
+        cout<<"\n\n\tChoose any one option: ";
+        cin >> option;
         if (option == 1)
         {
             fstream ohf_v("order history.txt", ios ::in);
-            while (!ohf_v.eof())
+            ohf_v.seekg(0, ios:: beg);
+            while (getline(ohf_v,line))
             {
-                ohf_v.get(ch);
-                cout << ch;
+                cout <<line<<endl;
             }
             ohf_v.close();
             cout << "\n\n\tPress any key to go back...";
@@ -630,10 +632,10 @@ void customer()
                     cin >> item.quantity;
                     item.sum = item.sum + (item.price * item.quantity);
                     viewf2.close();
-                    order_p();
                     break;
                 }
             }
+                    order_p();
         }
         else if (option == 2)
         {
@@ -654,10 +656,10 @@ void customer()
                     cin >> item.quantity;
                     item.sum = item.sum + (item.price * item.quantity);
                     viewd2.close();
-                    order_p();
                     break;
                 }
             }
+                    order_p();
         }
         else if (option == 3)
         {
@@ -677,10 +679,10 @@ void customer()
                     cin >> item.quantity;
                     item.sum = item.sum + (item.price * item.quantity);
                     viewdt1.close();
-                    order_p();
                     break;
                 }
             }
+                    order_p();
         }
     } while (option != 0);
 }
@@ -688,7 +690,7 @@ void customer()
 void order_p()
 {
     int option;
-    do{
+    // do{
         cout << "\n\n\t<1> Order again\n\t<2> Proceed To Bill \n\n\tPress any key to exit";
         cout << "\n\n\t\tChoose any one option: ";
         cin >> option;
@@ -701,9 +703,10 @@ void order_p()
             string name, number;
             int pin;
             cout << "\n\n\tYour total bill: " << item.sum;
-            cout << "Enter the following credentials:";
+            cout << "\n\tEnter the following credentials:";
             cout << "\n\tName : ";
             cin >> name;
+            // getline(cin, name);
             cout << "\n\tPhone number : ";
             cin >> number;
             cout << "\n\t<1> Pay with card\n\t<2> Pay with cash";
@@ -722,6 +725,11 @@ void order_p()
                 cout << "\n\t\tINVALID OPTION";
             }
             cout << "\n\t\t***THANK YOU***\nWait for your order!You will be srved earlier";
+            fstream order_h("order history.txt",ios :: out | ios::app);
+            order_h<<"\nName: "<<name<<"\nPhone: "<<number<<"\nTotal Bill: "<<item.sum<<"\n";
+            order_h.close();
         }
-    }while(option != 1);
+        cout <<"\n\nPress any key to go back...";
+        getch();
+    // }while(option != 1);
 }
