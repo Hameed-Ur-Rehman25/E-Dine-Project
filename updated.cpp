@@ -28,6 +28,7 @@ void add_member();
 void remove_member();
 void find_member();
 void order_p();
+void customer();
 
 struct
 {
@@ -58,30 +59,26 @@ struct
 int main()
 {
     int option;
-    system("cls");
-    // cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO E-DINE CAFE*****\n\n";
-    title("WELCOME TO E-DINE CAFE");
-    cout << "\t<1> MANAGER\n\n\t<2> CUSTOMER\n\n\t<3> KITCHEN\n\n\tEnter any key to exit...";
-    cout << "\n\n\t\tChoose any one option: ";
-    cin >> option;
-    switch (option)
-    {
-    case 1:
-    {
-        manager_portal();
-        break;
-    }
-    case 2:
-    {
-        customer();
-        break;
-    }
-    case 3:
-    {
-        /* chef */
-        break;
-    }
-    }
+    do{
+        system("cls");
+        // cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO E-DINE CAFE*****\n\n";
+        title("WELCOME TO E-DINE CAFE");
+        cout << "\t<1> MANAGER\n\n\t<2> CUSTOMER\n\n\t<3> KITCHEN\n\n\tEnter any key to exit...";
+        cout << "\n\n\t\tChoose any one option: ";
+        cin >> option;
+        if(option == 1)
+        {
+            manager_portal();
+        }
+        else if (option == 2)
+        {
+            customer();
+        }
+        else if (option == 3)
+        {
+            /* code */
+        }
+    }while(option != 0);
     return 0;
 }
 
