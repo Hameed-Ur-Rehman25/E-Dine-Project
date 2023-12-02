@@ -19,6 +19,21 @@ void view_menu();
 void fastfood();
 void drinks();
 void dessert();
+void add_item();
+void edit_item();
+
+struct
+{
+    string item_name;
+    int price = 0;
+    int sr_no = 0;
+    int quantity = 0;
+    int sum = 0;
+    int num = 0;
+    int fsr_no = 0;
+    string line;
+} item;
+
 int main()
 {
     int option;
@@ -119,7 +134,7 @@ void menu_management()
         }
         else if (option == 2)
         {
-            /* code */
+            edit_item();
             break;
         }
         else if (option == 3)
@@ -210,12 +225,12 @@ void edit_item()
     do{
         system("cls");
         title("MENU MANAGEMENT");
-        cout << "\n\t<1> Add Item\n\n\t<2> Remove Item\n\n\t<3> Update Item\n\n\t<0> Back\n\ntPress any key to exit...";
+        cout << "\n\t<1> Add Item\n\n\t<2> Remove Item\n\n\t<3> Update Item\n\n\t<0> Back\n\n\tPress any key to exit...";
         cout << "\n\n\t\tChoose any one option: ";
         cin >> option;
         if (option == 1)
         {
-            /* code */
+            add_item();
         }
         else if (option == 2)
         {
@@ -230,4 +245,47 @@ void edit_item()
             exit(0);
         }
     }while(option!=0);
+}
+
+void add_item()
+{
+    fstream add_fastfood("fastfood.txt",ios::out | ios::app);
+    fstream add_drinks("drinks.txt", ios::out | ios::app);
+    fstream add_dessert("dessert.txt", ios::out | ios::app);
+    int option;
+    system("cls");
+    title("ADD ITEM");
+    cout << "\n\n\tSerial Number: ";
+    cin >> item.sr_no;
+    cout << "\n\n\tItem Name (use '-' instead of space): ";
+    cin >> item.item_name;
+    cout << "\n\n\tPrice : ";
+    cin >> item.price;
+    cout <<"\n\n\tSelect Option:\n\t<1> Fast Food\t<2> Drinks\t<3> Dessert";
+    cout <<"\n\t\tChoose any one option: ";
+    cin >> option;
+    if (option == 1)
+    {
+        add_fastfood<<"\n"<<item.sr_no<<"\t"<<item.item_name<<"\t"<<item.price;
+        add_fastfood.close();
+        cout <<"\n\t\tSUCCESSFULLY SAVED!";
+        cout <<"\n\tPress any key to go back...";
+        getch();
+    }
+    else if (option == 2)
+    {
+        add_drinks<<"\n"<<item.sr_no<<"\t"<<item.item_name<<"\t"<<item.price;
+        add_drinks.close();
+        cout <<"\n\t\tSUCCESSFULLY SAVED!";
+        cout <<"\n\tPress any key to go back...";
+        getch();
+    }
+    else if (option == 3)
+    {
+        add_dessert<<"\n"<<item.sr_no<<"\t"<<item.item_name<<"\t"<<item.price;
+        add_dessert.close();
+        cout <<"\n\t\tSUCCESSFULLY SAVED!";
+        cout <<"\n\tPress any key to go back...";
+        getch();
+    }
 }
