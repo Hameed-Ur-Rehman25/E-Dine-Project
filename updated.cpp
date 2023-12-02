@@ -180,14 +180,20 @@ void view_menu()
         if (option == 1)
         {
             fastfood();
+            cout << "\n\nt\t\tPress any key to go Back";
+            getch();
         }
         else if (option == 2)
         {
             drinks();
+            cout << "\n\nt\t\tPress any key to go Back";
+            getch();
         }
         else if (option == 3)
         {
             dessert();
+            cout << "\n\nt\t\tPress any key to go Back";
+            getch();
         }
         else if (option != 0)
         {
@@ -205,8 +211,6 @@ void fastfood()
     {
         cout << line << endl;
     }
-    cout << "\n\nt\t\tPress any key to go Back";
-    getch();
     v_fastfood.close();
 }
 
@@ -219,8 +223,6 @@ void drinks()
     {
         cout << line << endl;
     }
-    cout << "\n\nt\t\tPress any key to go Back";
-    getch();
     v_drinks.close();
 }
 
@@ -233,8 +235,6 @@ void dessert()
     {
         cout << line << endl;
     }
-    cout << "\n\nt\t\tPress any key to go Back";
-    getch();
     v_dessert.close();
 }
 
@@ -584,24 +584,156 @@ void remove_member()
 void find_member()
 {
     int option;
-    system("cls");
-    title("FIND MEMBER");
-    cout << "\n\nn\t\tEnter ID: ";
-    cin >> staf.fid;
-    fstream st_f("staff.txt", ios::in);
-    st_f.seekg(0, ios::beg);
-    while (getline(st_f, staf.line))
-    {
-        stringstream xs(staf.line);
-        xs >> staf.ID >> staf.fname >> staf.lname >> staf.DOB >> staf.Phone >> staf.DOJ;
-        if (staf.fid == staf.ID)
+    do{
+        system("cls");
+        title("FIND MEMBER");
+        cout << "\n\nn\t\tEnter ID: ";
+        cin >> staf.fid;
+        fstream st_f("staff.txt", ios::in);
+        st_f.seekg(0, ios::beg);
+        while (getline(st_f, staf.line))
         {
-            cout << "\tID: " << staf.ID << endl;
-            cout << "\tName: " << staf.fname << " " << staf.lname << endl;
-            cout << "\tDOB: " << staf.DOB << endl;
-            cout << "\tPhone: " << staf.Phone << endl;
-            cout << "\tDOJ: " << staf.DOJ << endl;
-            break;
+            stringstream xs(staf.line);
+            xs >> staf.ID >> staf.fname >> staf.lname >> staf.DOB >> staf.Phone >> staf.DOJ;
+            if (staf.fid == staf.ID)
+            {
+                cout << "\tID: " << staf.ID << endl;
+                cout << "\tName: " << staf.fname << " " << staf.lname << endl;
+                cout << "\tDOB: " << staf.DOB << endl;
+                cout << "\tPhone: " << staf.Phone << endl;
+                cout << "\tDOJ: " << staf.DOJ << endl;
+                break;
+            }
         }
+        if (staf.fid != staf.ID)
+        {
+            cerr <<"\n\tInvalid ID! Please correct correct ID number";
+        }
+        
+        cout << "\n\n\tPress 1 to add member(or any key to go back): ";
+        cin >> option;
+    }while(option == 1);
+}
+
+void customer()
+{
+    int option;
+    do{
+        system("cls");
+        title("WELCOME TO E-DINE");
+        cout << "\n\t<1> FASTFOOD \n\n\t<2> DRINKS\n\n\t<3> DESSERTS\n\n\t<0> Back\n\n\tPress any key to exit ";
+        cout << "\n\n\t\tChoose any one option: ";
+        cin >> option;
+        if (option == 1)
+        {
+            fastfood();
+            cout << "\n\n\t\tEnter Item Number: ";
+            cin >> item.num;
+            ifstream viewf2("fastfood.txt", ios ::in);
+            viewf2.seekg(0, ios::beg);
+            while (!viewf2.eof())
+            {
+                getline(viewf2, item.line);
+                stringstream xs(item.line);
+                xs >> item.sr_no >> item.item_name >> item.price;
+                if (item.num == item.sr_no)
+                {
+                    cout << "\n\t\tQuantity: ";
+                    cin >> item.quantity;
+                    item.sum = item.sum + (item.price * item.quantity);
+                    viewf2.close();
+                    order_p();
+                    break;
+                }
+            }
+        }
+        else if (option == 2)
+        {
+            string l2;
+            drinks();
+            cout << "\n\n\t\tEnter drinks: ";
+            cin >> item.num;
+            ifstream viewd2("drinks.txt", ios::in);
+            viewd2.seekg(0, ios::beg);
+            while (getline(viewd2, l2))
+            {
+                // getline(viewd2, l2);
+                stringstream xs(l2);
+                xs >> item.sr_no >> item.item_name >> item.price;
+                if (item.num == item.sr_no)
+                {
+                    cout << "\n\t\tQuantity: ";
+                    cin >> item.quantity;
+                    item.sum = item.sum + (item.price * item.quantity);
+                    viewd2.close();
+                    order_p();
+                    break;
+                }
+            }
+            
+        }
+        else if (option == 3)
+        {
+            dessert();
+            cout << "\n\n\t\tEnter your desserts: ";
+            cin >> item.num;
+            ifstream viewdt1("dessert.txt", ios::in);
+            viewdt1.seekg(0, ios::beg);
+            while (getline(viewdt1, item.line))
+            {
+                // getline(viewdt1, item.line);
+                stringstream xs(item.line);
+                xs >> item.sr_no >> item.item_name >> item.price;
+                if (item.num == item.sr_no)
+                {
+                    cout << "\n\t\tQuantity: ";
+                    cin >> item.quantity;
+                    item.sum = item.sum + (item.price * item.quantity);
+                    viewdt1.close();
+                    order_p();
+                    break;
+                }
+            }
+        }
+    }while(option != 0);    
+    
+}
+
+void order_p()
+{
+    int option;
+    cout << "\n\n\t<1> Order again\n\t<2> Proceed To Bill ";
+    cout << "\n\n\t\tChoose any one option: ";
+    cin >> option;
+    if (option == 1)
+    {
+        customer();
+    }
+    else if (option == 2)
+    {
+        string name, number;
+        int pin;
+        cout << "\n\n\tYour total bill: " << item.sum;
+        cout << "Enter the following credentials:";
+        cout << "\n\tName : ";
+        cin >> name;
+        cout << "\n\tPhone number : ";
+        cin >> number;
+        cout << "\n\t<1> Pay with card\n\t<2> Pay with cash";
+        cin >> option;
+        switch (option)
+        {
+        case 1:
+            cout << "\n\tEnter the pin code : ";
+            cin >> pin;
+            break;
+        case 2:
+            cout << "\n\tPay the cash on the counter!";
+            break;
+        default:
+            cout << "\n\t\tINVALID OPTION";
+        }
+        cout << "\n\t\t***THANK YOU***\nWait for your order!You will be srved earlier";
     }
 }
+

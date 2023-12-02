@@ -3,6 +3,8 @@ Welcome to the Restaurant Management System, a comprehensive solution designed t
 Features:
 Order Management: Efficiently handle customer orders from initiation to fulfillment.
 Menu Management: Easily update and customize your restaurant's menu with a user-friendly interface.
-Inventory Tracking: Keep a real-time check on stock levels and manage inventory seamlessly.
-Employee Scheduling: Simplify scheduling processes, track working hours, and manage shifts effortlessly.
-Customer Relationship Management (CRM): Build and maintain a customer database, allowing for personalized service and targeted promotions.
+
+MADE BY:
+HAMEED UR REHMAN
+ANSA ANWAAR
+AHMAD BUTT
