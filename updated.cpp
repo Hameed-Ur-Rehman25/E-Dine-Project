@@ -22,6 +22,7 @@ void dessert();
 void add_item();
 void edit_item();
 void remove_item();
+void order_history();
 void staff();
 void add_member();
 void remove_member();
@@ -118,15 +119,10 @@ void manager_portal()
         }
         else if (option == 3)
         {
-            /* code */
+            order_history();
             break;
         }
         else if (option == 4)
-        {
-            /* code */
-            break;
-        }
-        else if (option == 0)
         {
             /* code */
             break;
