@@ -72,7 +72,7 @@ int main()
     }
     case 2:
     {
-        // customer();
+        customer();
         break;
     }
     case 3:
@@ -411,47 +411,38 @@ void remove_item()
     } while (option != 0);
 }
 
-// void order_history()
-// {
-//     system("cls");
-//     title("ORDER HISTORY");
-//     cout << "\t\t<1> View\n\n\t<2> Delete\n\n\t<0> Back";
-//     switch (option)
-//     {
-//     case 1:
-//     {
-//         fstream ohf_v("order history.txt", ios ::in);
-//         while (!ohf_v.eof())
-//         {
-//             ohf_v.get(ch);
-//             cout << ch;
-//         }
-//         ohf_v.close();
-//         cout << "\n\n\tPress any key to go back...";
-//         getch();
-//         manager_portal();
-//         break;
-//     }
-//     case 2:
-//     {
-//         fstream ohf_t("order history.txt", ios ::trunc | ios ::out);
-//         ohf_t << "\t\t\tORDER HISTORY\n";
-//         ohf_t.close();
-//         break;
-//     }
-//     case 0:
-//     {
-//         manager_portal();
-//         break;
-//     }
-//     default:
-//     {
-//         wrong_entry();
-//         order_history();
-//         break;
-//     }
-//     }
-// }
+void order_history()
+{
+    int option;
+    do{
+        system("cls");
+        title("ORDER HISTORY");
+        cout << "\t\t<1> View\n\n\t<2> Delete\n\n\t<0> Back";
+        if (option == 1)
+        {
+            fstream ohf_v("order history.txt", ios ::in);
+            while (!ohf_v.eof())
+            {
+                ohf_v.get(ch);
+                cout << ch;
+            }
+            ohf_v.close();
+            cout << "\n\n\tPress any key to go back...";
+            getch();
+        }
+        else if (option == 2)
+        {
+            fstream ohf_t("order history.txt", ios ::trunc | ios ::out);
+            ohf_t << "\t\t\tORDER HISTORY\n";
+            ohf_t.close();
+        }
+        else if (option != 0)
+        {
+            exit(0);
+        }
+        
+    }while(option != 0);
+}
 
 void staff()
 {
