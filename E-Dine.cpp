@@ -908,10 +908,11 @@ void customer()
                 item.sum = item.sum + (item.price * item.quantity);
                 // cout << item.sum;
                 viewdt1.close();
+                order_p();
                 break;
             }
         }
-        order_p();
+       
         break;
     }
         // case 0:

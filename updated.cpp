@@ -8,13 +8,17 @@
 using namespace std;
 
 char ch;
+string line;
 
 inline void wrong_entry();
 inline void title(string t);
 
 void manager_portal();
 void menu_management();
-
+void view_menu();
+void fastfood();
+void drinks();
+void dessert();
 int main()
 {
     int option;
@@ -29,8 +33,6 @@ int main()
     case 1:
     {
         manager_portal();
-        // cout <<"\n\nWelcome Back to main";
-        // getch();
         break;
     }
     case 2:
@@ -72,10 +74,7 @@ void manager_portal()
         cin >> option;
         if (option == 1)
         {
-            cout <<"this is the option 1 of the manager portal";
             menu_management();
-            cout <<"Welcome Back to Manager Portal";
-            getch();
         }
         else if (option == 2)
         {
@@ -116,8 +115,7 @@ void menu_management()
         cin >> option;
         if (option == 1)
         {
-            cout <<"this is the option 1 of the menu management";
-            getch();
+            view_menu();
         }
         else if (option == 2)
         {
@@ -128,6 +126,104 @@ void menu_management()
         {
             /* code */
             break;
+        }
+        else if (option != 0)
+        {
+            exit(0);
+        }
+    }while(option!=0);
+}
+
+void view_menu()
+{
+    int option;
+    do{    
+        system("cls");
+        title("E-DINE CAFE MENU LIST");
+        cout << "\n\t<1> FASTFOOD \n\n\t<2> DRINKS\n\n\t<3> DESSERTS\n\n\t<0> Back\n\n\tPress any key to exit... ";
+        cout << "\n\n\t\tChoose any one option: ";
+        cin >> option;
+        if (option==1)
+        {
+            fastfood();
+        }
+        else if (option == 2)
+        {
+            drinks();
+        }
+        else if (option == 3)
+        {
+            dessert();
+        }
+        else if (option != 0)
+        {
+            exit(0);
+        }        
+    }while(option!=0);
+}
+
+void fastfood()
+{
+    system("cls");
+    title("FAST FOOD");
+    fstream v_fastfood("fastfood.txt",ios :: in);
+    while (getline(v_fastfood,line))
+    {
+        cout <<line<<endl;
+    }
+    cout <<"\n\nt\t\tPress any key to go Back";
+    getch();
+    v_fastfood.close();
+}
+
+void drinks()
+{
+    system("cls");
+    title("DRINKS");
+    fstream v_drinks("drinks.txt",ios :: in);
+    while (getline(v_drinks,line))
+    {
+        cout <<line<<endl;
+    }
+    cout <<"\n\nt\t\tPress any key to go Back";
+    getch();
+    v_drinks.close();
+}
+
+void dessert()
+{
+    system("cls");
+    title("DESSERT");
+    fstream v_dessert("dessert.txt",ios :: in);
+    while (getline(v_dessert,line))
+    {
+        cout <<line<<endl;
+    }
+    cout <<"\n\nt\t\tPress any key to go Back";
+    getch();
+    v_dessert.close();
+}
+
+void edit_item()
+{
+    int option;
+    do{
+        system("cls");
+        title("MENU MANAGEMENT");
+        cout << "\n\t<1> Add Item\n\n\t<2> Remove Item\n\n\t<3> Update Item\n\n\t<0> Back\n\ntPress any key to exit...";
+        cout << "\n\n\t\tChoose any one option: ";
+        cin >> option;
+        if (option == 1)
+        {
+            /* code */
+        }
+        else if (option == 2)
+        {
+            /* code */
+        }
+        else if (option == 3)
+        {
+            /* code */
         }
         else if (option != 0)
         {
