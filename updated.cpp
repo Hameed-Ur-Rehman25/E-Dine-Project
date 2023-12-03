@@ -619,9 +619,8 @@ void customer()
             cin >> item.num;
             ifstream viewf2("fastfood.txt", ios ::in);
             viewf2.seekg(0, ios::beg);
-            while (!viewf2.eof())
+            while (getline(viewf2, item.line))
             {
-                getline(viewf2, item.line);
                 stringstream xs(item.line);
                 xs >> item.sr_no >> item.item_name >> item.price;
                 if (item.num == item.sr_no)
@@ -633,7 +632,11 @@ void customer()
                     break;
                 }
             }
-                    order_p();
+            if (item.num == item.sr_no)
+                order_p();
+            else
+                cerr<<"\n\tInvalid Input!\n";
+                getch();
         }
         else if (option == 2)
         {
@@ -645,7 +648,6 @@ void customer()
             viewd2.seekg(0, ios::beg);
             while (getline(viewd2, l2))
             {
-                // getline(viewd2, l2);
                 stringstream xs(l2);
                 xs >> item.sr_no >> item.item_name >> item.price;
                 if (item.num == item.sr_no)
@@ -657,7 +659,11 @@ void customer()
                     break;
                 }
             }
-                    order_p();
+            if (item.num == item.sr_no)
+                order_p();
+            else
+                cerr<<"\n\tInvalid Input!\n";
+                getch();
         }
         else if (option == 3)
         {
@@ -668,7 +674,6 @@ void customer()
             viewdt1.seekg(0, ios::beg);
             while (getline(viewdt1, item.line))
             {
-                // getline(viewdt1, item.line);
                 stringstream xs(item.line);
                 xs >> item.sr_no >> item.item_name >> item.price;
                 if (item.num == item.sr_no)
@@ -680,7 +685,11 @@ void customer()
                     break;
                 }
             }
-                    order_p();
+            if (item.num == item.sr_no)
+                order_p();
+            else
+                cerr<<"\n\tInvalid Input!\n";
+                getch();
         }
     } while (option != 0);
 }
