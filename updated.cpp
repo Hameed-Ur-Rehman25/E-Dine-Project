@@ -2,7 +2,8 @@
 #include <conio.h>
 #include <stdlib.h>
 #include <fstream>
-#include <iomanip>
+// #include <iomanip>
+#include <sstream>
 #include <vector>
 
 using namespace std;
@@ -78,18 +79,18 @@ int main()
         {
             system("cls");
             title("TEAM MEMBERS");
-            cout <<"\n\t-->ANSA ANWAAR\n\t-->AHMAD BUTT\n\t-->HAMEED UR REHMAN\n";
+            cout <<"\n\t--> ANSA ANWAAR\n\t--> AHMAD BUTT\n\t--> HAMEED UR REHMAN\n";
             getch();
         }
     }while(option != 0);
     return 0;
 }
 
-inline void wrong_entry() // WRONG OPTION ALERT
-{
-    cerr << "\n\n\t\t\tIncorrect Option! Please choose from the given option.Press any key to try again....";
-    getch();
-}
+// inline void wrong_entry() // WRONG OPTION ALERT
+// {
+//     cerr << "\n\n\t\t\tIncorrect Option! Please choose from the given option.Press any key to try again....";
+//     getch();
+// }
 
 inline void title(string t) // TITLE ALIGNEMENT AND DESIGN
 {
