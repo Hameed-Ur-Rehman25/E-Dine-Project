@@ -76,8 +76,9 @@ int main()
         }
         else if (option == 3)
         {
+            system("cls");
             title("TEAM MEMBERS");
-            cout <<"\n\t-->HAMEED UR REHMAN\n\t-->AHMAD BUTT\n\t-->ANSA ANWAAR";
+            cout <<"\n\t-->HAMEED UR REHMAN\t-->AHMAD BUTT\t-->ANSA ANWAAR";
             getch();
         }
     }while(option != 0);
