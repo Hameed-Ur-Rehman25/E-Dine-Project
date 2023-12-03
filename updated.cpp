@@ -63,7 +63,7 @@ int main()
         system("cls");
         // cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO E-DINE CAFE*****\n\n";
         title("WELCOME TO E-DINE CAFE");
-        cout << "\t<1> MANAGER\n\n\t<2> CUSTOMER\n\n\t<3> KITCHEN\n\n\tEnter any key to exit...";
+        cout << "\t<1> MANAGER\n\n\t<2> CUSTOMER\n\n\t<3> ABOUT US\n\n\tEnter any key to exit...";
         cout << "\n\n\t\tChoose any one option: ";
         cin >> option;
         if(option == 1)
@@ -76,7 +76,9 @@ int main()
         }
         else if (option == 3)
         {
-            /* code */
+            title("TEAM MEMBERS");
+            cout <<"\n\t-->HAMEED UR REHMAN\n\t-->AHMAD BUTT\n\t-->ANSA ANWAAR";
+            getch();
         }
     }while(option != 0);
     return 0;
@@ -446,7 +448,7 @@ void staff()
     {
         system("cls");
         title("STAFF MANAGEMENT");
-        cout << "\n\t<1> View Member List\n\n\t<2> Add Member \n\n\t<3> Remove Member\n\n\t<4> Update Member Data\n\n\t<5> Find Member\n\n\t<0> Back\n\n\tPress any key to exit...";
+        cout << "\n\t<1> View Member List\n\n\t<2> Add Member \n\n\t<3> Remove Member\n\n\t<4> Find Member\n\n\t<0> Back\n\n\tPress any key to exit...";
         cout << "\n\n\t\tChoose any one option: ";
         cin >> option;
         if (option == 1)
@@ -472,10 +474,6 @@ void staff()
             remove_member();
         }
         else if (option == 4)
-        {
-            /* code */
-        }
-        else if (option == 5)
         {
             find_member();
         }
