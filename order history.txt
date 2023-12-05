@@ -1,15 +1,1 @@
-Name: ali
-Phone: 0322532
-Total Bill: 600
-
-Name: gsdg
-Phone: 5634563
-Total Bill: 64
-
-Name: dasdg
-Phone: 346234
-Total Bill: 2000
-
-Name: gsfdgs
-Phone: 34573673
-Total Bill: 180288
+			ORDER HISTORY
