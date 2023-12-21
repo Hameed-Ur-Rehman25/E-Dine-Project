@@ -24,6 +24,8 @@ void add_item();
 void edit_item();
 void remove_item();
 void order_history();
+void update_item();
+// void update_f(string file_n);
 void staff();
 void add_member();
 void remove_member();
@@ -46,13 +48,13 @@ struct
 struct
 {
     int ID;
-    string fname;
-    string lname;
+    string fname; //char fname[]
+    string lname; //
     string DOB;
     // string mm,dd,yyyy;
-    string Address;
-    string Phone;
-    string DOJ;
+    string Address; // char address[100]
+    string Phone; // double
+    string DOJ; //
     string line;
     int fid;
 } staf;
@@ -60,15 +62,17 @@ struct
 int main()
 {
     int option;
-    do{
+    do
+    {
         system("cls");
         // cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO E-DINE CAFE*****\n\n";
         title("WELCOME TO E-DINE CAFE");
         cout << "\t<1> MANAGER\n\n\t<2> CUSTOMER\n\n\t<3> ABOUT US\n\n\tEnter any key to exit...";
         cout << "\n\n\t\tChoose any one option: ";
         cin >> option;
-        if(option == 1)
+        if (option == 1)
         {
+            //----
             manager_portal();
         }
         else if (option == 2)
@@ -79,10 +83,10 @@ int main()
         {
             system("cls");
             title("TEAM MEMBERS");
-            cout <<"\n\t--> ANSA ANWAAR\n\t--> AHMAD BUTT\n\t--> HAMEED UR REHMAN\n";
+            cout << "\n\t--> ANSA ANWAAR\n\t--> AHMAD BUTT\n\t--> HAMEED UR REHMAN\n";
             getch();
         }
-    }while(option != 0);
+    } while (option != 0);
     return 0;
 }
 
@@ -411,19 +415,20 @@ void remove_item()
 void order_history()
 {
     int option;
-    do{
+    do
+    {
         system("cls");
         title("ORDER HISTORY");
         cout << "\n\t<1> View\n\n\t<2> Delete\n\n\t<0> Back\n\n\tPress any key to exit...";
-        cout<<"\n\n\tChoose any one option: ";
+        cout << "\n\n\tChoose any one option: ";
         cin >> option;
         if (option == 1)
         {
             fstream ohf_v("order history.txt", ios ::in);
-            ohf_v.seekg(0, ios:: beg);
-            while (getline(ohf_v,line))
+            ohf_v.seekg(0, ios::beg);
+            while (getline(ohf_v, line))
             {
-                cout <<line<<endl;
+                cout << line << endl;
             }
             ohf_v.close();
             cout << "\n\n\tPress any key to go back...";
@@ -439,9 +444,59 @@ void order_history()
         {
             exit(0);
         }
-        
-    }while(option != 0);
+
+    } while (option != 0);
 }
+
+// void update_item()
+// {
+//     int option;
+//     do
+//     {
+//         system("cls");
+//         title("UPDATE ITEM");
+//         cout << "\n\t<1> FASTFOOD \n\n\t<2> DRINKS\n\n\t<3> DESSERTS\n\n\t<0> Back\n\n\tPress any key to exit... ";
+//         cout << "\n\n\t\tChoose any one option: ";
+//         cin >> option;
+//         if (option == 1)
+//         {
+//             fastfood();
+//             update_f("fastfood");
+//         }
+//         else if (option == 2)
+//         {
+//             drinks();
+//         }
+//         else if (option == 3)
+//         {
+//             dessert();
+//         }
+//         else if (option != 0)
+//         {
+//             exit(0);
+//         }
+//     } while (option != 0);
+// }
+
+// void update_f(string file_n)
+// {
+//     do
+//     {
+//         cout << "\n\n\t\t Enter Item number to update: ";
+//         cin >> item.fsr_no;
+//         fstream up_ff(file_n + ".txt", ios ::out);
+//         up_ff.seekg(0, ios ::beg);
+//         while (getline(up_ff, item.line))
+//         {
+//             stringstream pss(item.line);
+//             pss >> item.sr_no >> item.item_name >> item.price;
+//             if (item.fsr_no == item.sr_no)
+//             {
+//                 cout << "\n\t<1> Update Name\n\t<2> Update Item\n\t<3> Update Price\n\t<0> Back\n\tPress any key to exit...";
+//             }
+//         }
+//     } while (/* condition */);
+// }
 
 void staff()
 {
@@ -637,8 +692,8 @@ void customer()
             if (item.num == item.sr_no)
                 order_p();
             else
-                cerr<<"\n\tInvalid Input!\n";
-                getch();
+                cerr << "\n\tInvalid Input!\n";
+            getch();
         }
         else if (option == 2)
         {
@@ -664,8 +719,8 @@ void customer()
             if (item.num == item.sr_no)
                 order_p();
             else
-                cerr<<"\n\tInvalid Input!\n";
-                getch();
+                cerr << "\n\tInvalid Input!\n";
+            getch();
         }
         else if (option == 3)
         {
@@ -690,8 +745,8 @@ void customer()
             if (item.num == item.sr_no)
                 order_p();
             else
-                cerr<<"\n\tInvalid Input!\n";
-                getch();
+                cerr << "\n\tInvalid Input!\n";
+            getch();
         }
     } while (option != 0);
 }
@@ -700,45 +755,45 @@ void order_p()
 {
     int option;
     // do{
-        cout << "\n\n\t<1> Order again\n\t<2> Proceed To Bill \n\n\tPress any key to exit";
-        cout << "\n\n\t\tChoose any one option: ";
+    cout << "\n\n\t<1> Order again\n\t<2> Proceed To Bill \n\n\tPress any key to exit";
+    cout << "\n\n\t\tChoose any one option: ";
+    cin >> option;
+    // if (option == 1)
+    // {
+    //     customer();
+    // }
+    if (option == 2)
+    {
+        string name, number;
+        int pin;
+        cout << "\n\n\tYour total bill: " << item.sum;
+        cout << "\n\tEnter the following credentials:";
+        cout << "\n\tName : ";
+        cin >> name;
+        // getline(cin, name);
+        cout << "\n\tPhone number : ";
+        cin >> number;
+        cout << "\n\t<1> Pay with card\n\t<2> Pay with cash";
+        cout << "\n\n\tChoose any one option: ";
         cin >> option;
-        // if (option == 1)
-        // {
-        //     customer();
-        // }
-        if (option == 2)
+        switch (option)
         {
-            string name, number;
-            int pin;
-            cout << "\n\n\tYour total bill: " << item.sum;
-            cout << "\n\tEnter the following credentials:";
-            cout << "\n\tName : ";
-            cin >> name;
-            // getline(cin, name);
-            cout << "\n\tPhone number : ";
-            cin >> number;
-            cout << "\n\t<1> Pay with card\n\t<2> Pay with cash";
-            cout <<"\n\n\tChoose any one option: ";
-            cin >> option;
-            switch (option)
-            {
-            case 1:
-                cout << "\n\tEnter the pin code : ";
-                cin >> pin;
-                break;
-            case 2:
-                cout << "\n\tPay the cash on the counter!";
-                break;
-            default:
-                cout << "\n\t\tINVALID OPTION";
-            }
-            cout << "\n\t\t***THANK YOU***\nWait for your order!You will be srved earlier";
-            fstream order_h("order history.txt",ios :: out | ios::app);
-            order_h<<"\nName: "<<name<<"\nPhone: "<<number<<"\nTotal Bill: "<<item.sum<<"\n";
-            order_h.close();
+        case 1:
+            cout << "\n\tEnter the pin code : ";
+            cin >> pin;
+            break;
+        case 2:
+            cout << "\n\tPay the cash on the counter!";
+            break;
+        default:
+            cout << "\n\t\tINVALID OPTION";
         }
-        cout <<"\n\nPress any key to go back...";
-        getch();
+        cout << "\n\t\t***THANK YOU***\nWait for your order!You will be srved earlier";
+        fstream order_h("order history.txt", ios ::out | ios::app);
+        order_h << "\nName: " << name << "\nPhone: " << number << "\nTotal Bill: " << item.sum << "\n";
+        order_h.close();
+    }
+    cout << "\n\nPress any key to go back...";
+    getch();
     // }while(option != 1);
 }
