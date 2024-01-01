@@ -58,6 +58,8 @@ struct employee
 
 int main()
 {
+    string password, old_password;
+    int tries = 0;
     int option;
     do
     {
@@ -68,8 +70,27 @@ int main()
         cin >> option;
         if (option == 1)
         {
-            // pssword enter
-            manager_portal();
+            while(tries < 3 && tries >=0)
+            {
+                cout << "\n\tEnter Password: ";
+                cin >> password;
+                fstream pass_file("password.txt", ios::in);
+                pass_file >> old_password;
+                pass_file.close();
+                if (old_password == password)
+                {
+                    cout << "\n\tPassword Matched!\n\tPress any key to continue";
+                    getch();
+                    manager_portal();
+                    break;
+                }
+                else
+                {
+                    cout << "\n\tIncorrect Password!Remaining Tries "<<3-tries<<"\n\tPress any key to try again";
+                    getch();
+                }
+                tries++;
+            }
         }
         else if (option == 2)
         {
@@ -119,7 +140,17 @@ void manager_portal()
         }
         else if (option == 4)
         {
-            /* change password*/
+            string new_password;
+            system("cls");
+            title("Change Password");
+            fstream change_file("password.txt", ios::out);
+            cout << "\n\tEnter New Password: ";
+            cin >> new_password;
+            change_file << new_password;
+            change_file.close();
+            cout <<"\n\tPassword Changed Successfully!\n\tPress any key to go back";
+            option = 0;
+            getch();
             break;
         }
         else if (option != 0)
@@ -512,7 +543,7 @@ void update_f(string file_n)
     up_file << item.sr_no << "\t" << item.item_name << "\t" << item.price;
     up_file.close();
     cout << "\n\tMenu Is Updated Successfully";
-    v_menu(file_n +".txt");
+    v_menu(file_n + ".txt");
     cout << "\n\tPress any key to go back";
     getch();
 }
