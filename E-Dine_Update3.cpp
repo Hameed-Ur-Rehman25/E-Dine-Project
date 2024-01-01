@@ -51,7 +51,7 @@ struct employee
     // string mm,dd,yyyy;
     string Address; // char address[100]
     string Phone;   // double
-    string DOJ;     //
+    string DOJ;     
     string line;
     int fid;
 } staf;
@@ -70,7 +70,7 @@ int main()
         cin >> option;
         if (option == 1)
         {
-            while(tries < 3 && tries >=0)
+            while (tries < 3 && tries >= 0)
             {
                 cout << "\n\tEnter Password: ";
                 cin >> password;
@@ -86,7 +86,7 @@ int main()
                 }
                 else
                 {
-                    cout << "\n\tIncorrect Password!Remaining Tries "<<3-tries<<"\n\tPress any key to try again";
+                    cout << "\n\tIncorrect Password!Remaining Tries " << 3 - tries << "\n\tPress any key to try again";
                     getch();
                 }
                 tries++;
@@ -100,7 +100,7 @@ int main()
         {
             system("cls");
             title("TEAM MEMBERS");
-            cout << "\n\t--> ANSA ANWAAR\n\t--> AHMAD BUTT\n\t--> HAMEED UR REHMAN\n";
+            cout << "\n\t--> ANSA ANWAAR\tFounder Of Amazon\n\t--> AHMAD BUTT\t Co-Founder Of GOOGLE\n\t--> HAMEED UR REHMAN\tBEROZGAR\n";
             getch();
         }
     } while (option != 0);
@@ -148,7 +148,7 @@ void manager_portal()
             cin >> new_password;
             change_file << new_password;
             change_file.close();
-            cout <<"\n\tPassword Changed Successfully!\n\tPress any key to go back";
+            cout << "\n\tPassword Changed Successfully!\n\tPress any key to go back";
             option = 0;
             getch();
             break;
@@ -273,6 +273,8 @@ void edit_item()
 
 void add_item()
 {
+    bool flag = false;
+    string h = "-";
     fstream add_fastfood("fastfood.txt", ios::out | ios::app);
     fstream add_drinks("drinks.txt", ios::out | ios::app);
     fstream add_dessert("dessert.txt", ios::out | ios::app);
