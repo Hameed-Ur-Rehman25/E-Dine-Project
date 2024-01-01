@@ -135,7 +135,8 @@ void menu_management()
     do
     {
         system("cls");
-        cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO MENU MANAGEMENT*****\n\n";
+        title("WELCOME TO MENU MANAGEMENT");
+        // cout << "\t\t\t\t\t\t\t\t\t*****WELCOME TO MENU MANAGEMENT*****\n\n";
         cout << "\n\t<1> View Menu\n\n\t<2> Edit/Update Menu\n\n\t<0> Back\n\n\tPress any key to exit...";
         cout << "\n\n\t\tChoose any one option: ";
         cin >> option;
