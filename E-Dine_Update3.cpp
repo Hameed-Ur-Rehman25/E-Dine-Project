@@ -453,9 +453,8 @@ void update_item()
 void update_f(string file_n)
 {
     vector<string> update_list;
+    bool flag = false;
     int option;
-    // do
-    // {
     cout << "\n\n\t\t Enter Item number to update: ";
     cin >> item.fsr_no;
     fstream up_ff(file_n + ".txt", ios ::in);
@@ -467,42 +466,52 @@ void update_f(string file_n)
         pss >> item.sr_no >> item.item_name >> item.price;
         if (item.fsr_no == item.sr_no)
         {
-
-            cout << "\n\t<1> Update Name\n\t<3> Update Price\n\t<3> Update Serial Number\n\t<0> Back\n\tPress any key to exit...";
-            cout << "Choose any one option: ";
-            cin >> option;
-            switch (option)
-            {
-            case 1:
-                cout << "\n\t New Name: ";
-                cin >> item.item_name;
-                break;
-            case 2:
-                cout << "\n\t New Price: ";
-                cin >> item.price;
-                break;
-            case 3:
-                cout << "\n\t New Serial Number: ";
-                cin >> item.sr_no;
-                break;
-            default:
-                exit(0);
-                break;
-            }
+            flag = true;
+            line = item.line;
         }
-        pss << item.sr_no << "\t" << item.item_name << "\t" << item.price;
-        update_list.push_back(item.line);
+        else
+        {
+            update_list.push_back(item.line);
+        }
     }
+    up_ff.close();
+
+    if (flag)
+    {
+        stringstream update_ss(line);
+        update_ss >> item.sr_no >> item.item_name >> item.price;
+        cout << "\n\t<1> Update Name\n\t<3> Update Price\n\t<3> Update Serial Number\n\t<0> Back\n\tPress any key to exit...";
+        cout << "Choose any one option: ";
+        cin >> option;
+        switch (option)
+        {
+        case 1:
+            cout << "\n\t New Name: ";
+            cin >> item.item_name;
+            break;
+        case 2:
+            cout << "\n\t New Price: ";
+            cin >> item.price;
+            break;
+        case 3:
+            cout << "\n\t New Serial Number: ";
+            cin >> item.sr_no;
+            break;
+        default:
+            exit(0);
+            break;
+        }
+    }
+    fstream up_file(file_n + ".txt", ios::out);
     for (int i = 0; i < update_list.size(); i++)
     {
-        cout << update_list[i] << endl;
+        up_file << update_list[i] << endl;
     }
-    // up_ff.seekp(0, ios::beg);
-    // up_ff << "\n"
-    //              << item.sr_no << "\t" << item.item_name << "\t" << item.price;
-    cout << "while condition";
+    up_file << item.sr_no << "\t" << item.item_name << "\t" << item.price;
+    up_file.close();
+    cout << "\n\tMenu Is Updated Successfully";
+    cout << "\n\tPress any key to go back";
     getch();
-    // } while (option != 0);
 }
 
 void staff()
