@@ -438,10 +438,12 @@ void update_item()
         else if (option == 2)
         {
             v_menu("drinks");
+            update_f("drinks");
         }
         else if (option == 3)
         {
             v_menu("dessert");
+            update_f("dessert");
         }
         else if (option != 0)
         {
@@ -510,6 +512,7 @@ void update_f(string file_n)
     up_file << item.sr_no << "\t" << item.item_name << "\t" << item.price;
     up_file.close();
     cout << "\n\tMenu Is Updated Successfully";
+    v_menu(file_n +".txt");
     cout << "\n\tPress any key to go back";
     getch();
 }
